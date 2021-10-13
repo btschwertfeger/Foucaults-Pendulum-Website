@@ -1,0 +1,29 @@
+{
+  "name": "foucaultspendelumwebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crynetomega/FoucaultsPendelumWebsite.git"
+  },
+  "keywords": [
+    "foucaultspendelum",
+    "website",
+    "awi",
+    "learning",
+    "edu"
+  ],
+  "author": "Benjamint Thomas Schwertfeger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Crynetomega/FoucaultsPendelumWebsite/issues"
+  },
+  "homepage": "https://github.com/Crynetomega/FoucaultsPendelumWebsite#readme",
+  "dependencies": {
+    "mathjs": "^9.5.0"
+  }
+}

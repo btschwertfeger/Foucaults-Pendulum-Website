@@ -1,0 +1,130 @@
+<!--
+    ########################################
+    ## @author Benjamin Thomas Schwertfeger (October 2021)
+    ## copyright by Benjamin Thomas Schwertfeger (October 2021)
+    ############
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Foucaults Pendelum</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="format.css">
+
+        <!-- CHART JS -->
+        <script
+            src='https://cdn.jsdelivr.net/npm/chart.js@3.3.1/dist/chart.min.js'> </script>
+        <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+        <!-- PLOTLY FOR CONTOURPLOT -->
+        <script src="https://cdn.plot.ly/plotly-2.3.0.min.js"></script>
+        <!-- CALCULATION -->
+        <script type="module" src="main_bundle.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <div class="placeholder"
+                style="width:100%;height:42px"></div>
+            <div class="headline" style="text-align:center;">
+                <h1>Foucaults Pendelum</h1><br>
+            </div>
+
+            <!-- MAIN -->
+            <div class="wrapper">
+                <div class="description">
+                    <h3>General</h3>
+                    <p>
+                        In the following we will deal with the topic of brownian
+                        motion. This is an apparently irregular and jerky motion
+                        of particles in liquids and gases.
+                    </p>
+                    <p>
+                        #foucau
+                    </p>
+                </div>
+
+                <!-- BROWNIAN MOTION FIRST LINE AND HIST PLOT -->
+                <div class="fp-plot-content-wrapper">
+                    <div id="fp_line_plot_container"
+                        class="fp-line-plot-container">
+                        <canvas id="fp_line_plot" width=500 height=500
+                            class="canvas"></canvas>
+                    </div>
+                    <div id="fp_input_section"
+                        class="fp-input-section">
+                        <div class="fp-input-wrapper input-wrapper">
+                            <div>Gravity</div>
+                            <div id="fp_g_value"
+                                name="fp_slide_value"
+                                class="fp-slide-value slide-value">9.8</div>
+                            <input id="fp_g_slide" type="range"
+                                class="fp-slide slide"
+                                name="fp_slide"
+                                min="0" max="20"
+                                step="0.1" value="9.8">
+                        </div>
+
+                        <div class="fp-input-wrapper input-wrapper">
+                            <div>Angular speed of earth</div>
+                            <div id="fp_R_value"
+                                name="fp_slide_value"
+                                class="fp-slide-value slide-value">0.1</div>
+                            <input id="fp_R_slide" type="range"
+                                class="fp-slide slide"
+                                name="fp_slide"
+                                min="0" max="10"
+                                step="0.1" value="0.1">
+                        </div>
+
+                        <div class="X-input-wrapper">
+                            Latitude:
+                            <input id="fp_X_input_lambda" type="text"
+                                name="fp_input_field"
+                                class="fp_X_input_field" value=3 />
+                        </div>
+
+                        <div class="X-input-wrapper">
+                            \(k_1\):
+                            <input id="fp_X_input_k_1" type="text"
+                                name="fp_input_field"
+                                class="fp_X_input_field" value=1 />
+                        </div>
+
+                        <div class="X-input-wrapper">
+                            \(k_2\):
+                            <input id="fp_X_input_k_2" type="text"
+                                name="fp_input_field"
+                                class="fp_X_input_field" value=1 />
+                        </div>
+
+                        <!-- <div class="fp-input-wrapper input-wrapper"
+                            style="min-width: 100px;">
+                            <div>random start value</div>
+                            <label class="switch">
+                                <input id="fp_randomStartValueCheckbox"
+                                    type="checkbox">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div> -->
+                        <button class="someBtn" id="fp_againBtn">Again</button>
+                        <button class="someBtn" id="fp_resetBtn">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- FOOTER -->
+            <div class="placeholder"
+                style="width:100%;height:62px;"></div>
+            <div id="footer" style="text-align:center; margin:0 auto; width:
+                50%; font-size: 16px;">Copyright © 2021 <a
+                    href="https://www.b-schwertfeger.de">Benjamin
+                    T. Schwertfeger</a>
+            </div>
+            <div class="placeholder" style="width:100%;height:100px;"></div>
+        </body>
+    </html>
