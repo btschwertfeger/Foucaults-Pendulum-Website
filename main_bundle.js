@@ -57,6 +57,14 @@ function arange(start, end, step) {
     return range;
 }
 
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+    //     // Usage!
+    //   sleep(500).then(() => {
+    //     // Do something after the sleep!
+    // });
+}
+
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // main functions
 window.defaultInput = {
@@ -172,6 +180,8 @@ function createFPPlot(input = window.defaultInput) {
                             size: 16,
                         },
                     },
+                    min: -2,
+                    max: 2,
                 },
                 y: {
                     display: true,
@@ -183,25 +193,12 @@ function createFPPlot(input = window.defaultInput) {
                             size: 16,
                         },
                     },
+                    min: -2,
+                    max: 2
                 },
             },
-            // animations: {
-            //     radius: {
-            //         duration: 400,
-            //         easing: 'linear',
-            //         loop: (ctx) => ctx.activate,
-            //     },
-            // },
-            // hoverRadius: 6,
-            // hoverBackgroundColor: 'yellow',
-            // interaction: {
-            //     mode: 'nearest',
-            //     intersect: false,
-            //     axis: 'x',
-            // },
         },
     };
-
 
     document.getElementById('fp_line_plot').remove();
     document.getElementById('fp_line_plot_container').innerHTML = '<canvas id="fp_line_plot"></canvas>';
@@ -209,13 +206,30 @@ function createFPPlot(input = window.defaultInput) {
     window.fp_line_chart = new Chart(ctx1, config);
 }
 
-function updateFPPlot(input) {
+function animatePlot() {
+    window.fp_line_chart.data.datasets[0].data.push(window.xyData[window.animationIndex]);
+    window.animationIndex += 1;
+    window.fp_line_chart.update()
+    if (window.animationIndex >= window.xyData.length) {
+        clearInterval(animinterval);
+    }
+}
+
+function updateFPPlot(input, animate = false) {
     const RESULT = computeFP(input);
     const DATA = createData(RESULT);
+    if (!animate) {
+        window.fp_line_chart.data = DATA
+        window.fp_line_chart.update()
+    } else {
+        window.animationIndex = 0;
+        window.xyData = DATA.datasets[0].data;
 
-    window.fp_line_chart.data = DATA
-    window.fp_line_chart.update()
-
+        window.fp_line_chart.data.datasets[0].data = [];
+        window.fp_line_chart.options.animation = false;
+        window.fp_line_chart.update();
+        window.animinterval = setInterval(animatePlot, 20);
+    }
 }
 
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
@@ -233,7 +247,7 @@ const fp_g_slide = document.getElementById("fp_g_slide"),
 
 // -----
 
-const fp_AGAIN_BTN = document.getElementById('fp_againBtn');
+const fp_AGAIN_BTN = document.getElementById('fp_animate');
 fp_AGAIN_BTN.onclick = function () {
     updateFPPlot({
         g: fp_g_slide.value,
@@ -243,12 +257,12 @@ fp_AGAIN_BTN.onclick = function () {
         k_1: fp_k1_input.value,
         k_2: fp_k2_input.value,
         time: arange(0, 222, 0.5)
-    });
+    }, true);
 }
-
 
 const bm_RESET_BTN = document.getElementById('fp_resetBtn');
 bm_RESET_BTN.onclick = function () {
+    clearInterval(animinterval);
     createFPPlot(); // resets the plot
 
     fp_g_slide.value = window.defaultInput.g,

@@ -27,81 +27,92 @@
     </head>
     <body>
         <div class="main">
-            <div class="placeholder"
-                style="width:100%;height:42px"></div>
-            <div class="headline" style="text-align:center;">
+            <div class="placeholder" style="width:100%; height:42px"></div>
+            <div id="headline_content" style="text-align:center;">
                 <h1>Foucaults Pendelum</h1><br>
+                <p>
+                    The Foucault pendulum, named after the French physicist <a
+                        href="https://en.wikipedia.org/wiki/L%C3%A9on_Foucault"
+                        target="_blank">Léon
+                        Foucault</a>, is a long spherical pendulum with a large
+                    mass
+                    at
+                    the lower end. This pendulum is so large that the
+                    earth's
+                    rotation influences its trajectory. By this change of
+                    the
+                    trajectory it can be proved that the earth rotates.
+                </p>
+                <p>
+                    &emsp; ☞ <a target="_blank"
+                        href="https://www.researchgate.net/publication/283123817_Das_Foucaultsche_Pendel_im_AZM">German
+                        paper</a>
+                </p>
+                <p>
+                    &emsp; ☞ Python implementation and explaination: <a
+                        target="_blank"
+                        href="https://github.com/singhmeet11/Foucalt-s-pendulum-a-simple-proof-that-earth-rotates">GitHub</a>
+                </p>
             </div>
 
             <!-- MAIN -->
             <div class="wrapper">
-                <div class="description">
-                    <h3>General</h3>
-                    <p>
-                        In the following we will deal with the topic of brownian
-                        motion. This is an apparently irregular and jerky motion
-                        of particles in liquids and gases.
-                    </p>
-                    <p>
-                        #foucau
-                    </p>
-                </div>
-
-                <!-- BROWNIAN MOTION FIRST LINE AND HIST PLOT -->
-                <div class="fp-plot-content-wrapper">
-                    <div id="fp_line_plot_container"
-                        class="fp-line-plot-container">
-                        <canvas id="fp_line_plot" width=500 height=500
-                            class="canvas"></canvas>
-                    </div>
-                    <div id="fp_input_section"
-                        class="fp-input-section">
-                        <div class="fp-input-wrapper input-wrapper">
-                            <div>Gravity</div>
-                            <div id="fp_g_value"
-                                name="fp_slide_value"
-                                class="fp-slide-value slide-value">9.8</div>
-                            <input id="fp_g_slide" type="range"
-                                class="fp-slide slide"
-                                name="fp_slide"
-                                min="0" max="20"
-                                step="0.1" value="9.8">
+                <!-- PLOT -->
+                <div class="content-left">
+                    <div class="fp-plot-content-wrapper">
+                        <div id="fp_line_plot_container"
+                            class="fp-line-plot-container">
+                            <canvas id="fp_line_plot" width=500 height=500
+                                class="canvas"></canvas>
                         </div>
+                        <div id="fp_input_section"
+                            class="fp-input-section">
+                            <div class="fp-input-wrapper input-wrapper">
+                                <div>Gravity</div>
+                                <div id="fp_g_value"
+                                    name="fp_slide_value"
+                                    class="fp-slide-value slide-value">9.8</div>
+                                <input id="fp_g_slide" type="range"
+                                    class="fp-slide slide"
+                                    name="fp_slide"
+                                    min="0" max="20"
+                                    step="0.1" value="9.8">
+                            </div>
 
-                        <div class="fp-input-wrapper input-wrapper">
-                            <div>Angular speed of earth</div>
-                            <div id="fp_R_value"
-                                name="fp_slide_value"
-                                class="fp-slide-value slide-value">0.1</div>
-                            <input id="fp_R_slide" type="range"
-                                class="fp-slide slide"
-                                name="fp_slide"
-                                min="0" max="10"
-                                step="0.1" value="0.1">
-                        </div>
+                            <div class="fp-input-wrapper input-wrapper">
+                                <div>Angular speed of earth</div>
+                                <div id="fp_R_value"
+                                    name="fp_slide_value"
+                                    class="fp-slide-value slide-value">0.1</div>
+                                <input id="fp_R_slide" type="range"
+                                    class="fp-slide slide"
+                                    name="fp_slide"
+                                    min="0" max="10"
+                                    step="0.1" value="0.1">
+                            </div>
 
-                        <div class="X-input-wrapper">
-                            Latitude:
-                            <input id="fp_X_input_lambda" type="text"
-                                name="fp_input_field"
-                                class="fp_X_input_field" value=3 />
-                        </div>
+                            <div class="X-input-wrapper">
+                                Latitude:
+                                <input id="fp_X_input_lambda" type="text"
+                                    name="fp_input_field"
+                                    class="fp_X_input_field" value=3 />
+                            </div>
 
-                        <div class="X-input-wrapper">
-                            \(k_1\):
-                            <input id="fp_X_input_k_1" type="text"
-                                name="fp_input_field"
-                                class="fp_X_input_field" value=1 />
-                        </div>
+                            <div class="X-input-wrapper">
+                                \(k_1\):
+                                <input id="fp_X_input_k_1" type="text"
+                                    name="fp_input_field"
+                                    class="fp_X_input_field" value=1 />
+                            </div>
 
-                        <div class="X-input-wrapper">
-                            \(k_2\):
-                            <input id="fp_X_input_k_2" type="text"
-                                name="fp_input_field"
-                                class="fp_X_input_field" value=1 />
-                        </div>
+                            <div class="X-input-wrapper">
+                                \(k_2\):
+                                <input id="fp_X_input_k_2" type="text"
+                                    name="fp_input_field"
+                                    class="fp_X_input_field" value=1 />
+                            </div>
 
-                        <!-- <div class="fp-input-wrapper input-wrapper"
+                            <!-- <div class="fp-input-wrapper input-wrapper"
                             style="min-width: 100px;">
                             <div>random start value</div>
                             <label class="switch">
@@ -110,9 +121,41 @@
                                 <span class="switch-slider"></span>
                             </label>
                         </div> -->
-                        <button class="someBtn" id="fp_againBtn">Again</button>
-                        <button class="someBtn" id="fp_resetBtn">Reset</button>
+                            <button class="someBtn" id="fp_animate">Animate</button>
+                            <button class="someBtn" id="fp_resetBtn">Reset</button>
+                        </div>
                     </div>
+                </div>
+
+                <!-- INFORMATION -->
+                <div class="content-right">
+                    <div class="description">
+                        <h3>Proof that the earth is rotating.</h3>
+                        <p>
+                            # formula
+                            oh yes i want more
+                            oh wow
+                            nice
+
+                        </p>
+                        <p>
+                            MORE text
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="placeholder" style="height:62px; width:100%;"></div>
+            <div id="imgs-container">
+                <div class="img-container">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/2/22/FoucaultGlobusAnima.gif">
+                    <p style="font-size: 10px; text-align: center; margin:
+                        0px;
+                        padding: 0px;">
+                        Source: <a
+                            href="https://upload.wikimedia.org/wikipedia/commons/2/22/FoucaultGlobusAnima.gif">Wikipedia</a>
+                    </p>
                 </div>
             </div>
 
