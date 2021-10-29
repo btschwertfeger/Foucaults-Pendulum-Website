@@ -3,6 +3,7 @@
     ########################################
     ## @author Benjamin Thomas Schwertfeger (October 2021)
     ## copyright by Benjamin Thomas Schwertfeger (October 2021)
+    ## E-Mail: kontakt@b-schwertfeger.de
     ############ 
 -->
 */
@@ -244,7 +245,7 @@ const fp_g_slide = document.getElementById("fp_g_slide"),
     fp_input_fields = document.getElementsByName("fp_input_field"),
     fp_plot_variables = ["g", "R", "lambda", "k_1", "k_2"];
 
-// -----
+// ----- ----- ----- ----- ----- ----- ----- ----- -----
 
 const fp_AGAIN_BTN = document.getElementById('fp_animate');
 fp_AGAIN_BTN.onclick = function () {
@@ -259,9 +260,10 @@ fp_AGAIN_BTN.onclick = function () {
     }, true);
 }
 
-const bm_RESET_BTN = document.getElementById('fp_resetBtn');
-bm_RESET_BTN.onclick = function () {
-    clearInterval(animinterval);
+const fp_RESET_BTN = document.getElementById('fp_resetBtn');
+fp_RESET_BTN.onclick = function () {
+    if (window.animinterval)
+        clearInterval(window.animinterval);
     createFPPlot(); // resets the plot
 
     fp_g_slide.value = window.defaultInput.g,
@@ -280,7 +282,7 @@ bm_RESET_BTN.onclick = function () {
         fp_k2_input.value = window.defaultInput.k_2;
 
 }
-// -----
+// // -----
 for (let entry = 0; entry < fp_slider.length; entry++) {
     fp_slider[entry].oninput = function () {
         let elem_id = fp_slider[entry].id;
@@ -320,3 +322,252 @@ for (let entry = 0; entry < fp_input_fields.length; entry++) {
 // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 // ...
 window.onload = createFPPlot()
+
+
+
+/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
+/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
+/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
+/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
+/* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
+/* VERSION 2 */
+
+window.defaultInputv2 = {
+    // user defined variabels
+    lat: 49,
+    tday: 86400, // length of one day in seconds 
+    dt: 1,
+
+    // initial conditions
+    g: 9.81,
+    L: 67 / 10, // Length of pendelum string
+    initial_y: 0.1, // initial y
+    initial_u: 0, // initial u
+    initial_v: 0, // initial v
+}
+
+function computeFPv2(input = window.defaultInputv2) {
+    const tmax = input.tday * 2; // Time of simulation in seconds
+    let initial_x = input.L / 100; // initial x coordinate
+
+    let Omega = 2 * Math.PI / input.tday,
+        phi = input.lat / 180 * Math.PI;
+
+    let sphi = Math.sin(phi);
+
+    // set up vectors for x, x_d, x_dd, and y, y_d, y_dd
+    let x = [...new Array(0)].map(() => 0), // x+x_d*t
+        x_d = [...new Array(0)].map(() => 0), // x_d + x_dd*t
+        x_dd = [...new Array(0)].map(() => 0), // 2*Omega*phi*y_d-(g/L)*x
+        y = [...new Array(0)].map(() => 0), // y+y_d*t
+        y_d = [...new Array(0)].map(() => 0), // y_d + y_dd*t
+        y_dd = [...new Array(0)].map(() => 0); // -2*Omega*phi*x_d-(g/L)*y
+
+    function a_x(yd, r) {
+        return 2 * Omega * sphi * yd - (input.g / input.L) * r;
+    }
+
+    function a_y(xd, r) {
+        return -2 * Omega * sphi * xd - (input.g / input.L) * r
+    }
+
+    // Initialize vectors
+    x[0] = initial_x
+    y[0] = input.initial_y
+    x_d[0] = input.initial_u
+    y_d[0] = input.initial_v
+    x_dd[0] = a_x(y_d[0], x[0])
+    y_dd[0] = a_y(x_d[0], y[0])
+    //plot(x[1], y[1], xlim = c(-1, 1), ylim = c(-1, 1))
+
+    console.log(x, y, x_d, x_dd, y_d, y_dd)
+
+    // loop over everything
+    for (let i = 1; i < input.tday; i++) {
+        x_dd.push(a_x(y_d[i - 1], x[i - 1]))
+        y_dd.push(a_y(x_d[i - 1], y[i - 1]))
+        x_d.push(x_d[i - 1] + x_dd[i] * input.dt)
+        y_d.push(y_d[i - 1] + y_dd[i] * input.dt)
+        x.push(x[i - 1] + x_d[i] * input.dt)
+        y.push(y[i - 1] + y_d[i] * input.dt)
+    }
+    console.log(x)
+
+    return {
+        x: x,
+        y: y
+    }
+}
+
+function createDatav2(input) {
+    let values = []
+    for (let i = 0; i < input.x.length; i++) {
+        if (i % 5 == 0) {
+            values.push({
+                x: input.x[i],
+                y: input.y[i]
+            })
+        }
+    }
+    let data = {
+        datasets: [{
+            label: 'Foucaults Pendelum',
+            data: values,
+            backgroundColor: 'blue',
+            showLine: true,
+            pointRadius: 0,
+            borderColor: 'blue',
+        }],
+    };
+    return data;
+}
+
+function createFPPlotv2(input = window.defaultInputv2) {
+
+    const RESULT = computeFPv2(input);
+    const DATA = createDatav2(RESULT);
+
+    const config = {
+        type: 'scatter',
+        data: DATA,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: '',
+                    font: {
+                        Family: window.font_famliy,
+                        size: 16,
+                    },
+                },
+                legend: {
+                    display: false,
+                },
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'x',
+                        font: {
+                            family: window.font_famliy,
+                            size: 16,
+                        },
+                    },
+                    min: -.2,
+                    max: .2,
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'y',
+                        font: {
+                            family: window.font_famliy,
+                            size: 16,
+                        },
+                    },
+                    min: -.2,
+                    max: .2,
+                },
+            },
+        },
+    };
+
+    document.getElementById('fp_v2_line_plot').remove();
+    document.getElementById('fp_v2_line_plot_container').innerHTML = '<canvas id="fp_v2_line_plot"></canvas>';
+    let ctx1 = document.getElementById('fp_v2_line_plot');
+    window.fp_line_chart = new Chart(ctx1, config);
+}
+
+function animatePlotv2() {
+    window.fp_line_chart.data.datasets[0].data.push(window.xyData[window.animationIndex]);
+    if (animationIndex > 100) {
+        window.fp_line_chart.data.datasets[0].data.shift()
+    }
+    window.animationIndex += 1;
+    window.fp_line_chart.update()
+    if (window.animationIndex >= window.xyData.length) {
+        clearInterval(window.animinterval_v2);
+    }
+}
+
+function updateFPPlotv2(input, animate = false) {
+    const RESULT = computeFPv2(input);
+    const DATA = createDatav2(RESULT);
+    if (!animate) {
+        window.fp_line_chart.data = DATA
+        window.fp_line_chart.update()
+    } else {
+        window.animationIndex = 0;
+        window.xyData = DATA.datasets[0].data;
+
+        window.fp_line_chart.data.datasets[0].data = [];
+        window.fp_line_chart.options.animation = false;
+        window.fp_line_chart.update();
+        window.animinterval_v2 = setInterval(animatePlotv2, 20);
+    }
+}
+
+const fp_v2_lat_input = document.getElementById("fp_v2_X_input_lat"),
+    fp_v2_dt_input = document.getElementById("fp_v2_X_input_dt"),
+    fp_v2_tday_input = document.getElementById("fp_v2_X_input_tday"),
+    fp_v2_g_slide = document.getElementById("fp_v2_g_slide");
+
+const fp_v2_AGAIN_BTN = document.getElementById('fp_v2_animateBtn');
+fp_v2_AGAIN_BTN.onclick = function () {
+    updateFPPlotv2({
+        lat: fp_v2_lat_input.value,
+        tday: fp_v2_tday_input.value,
+        dt: fp_v2_dt_input.value,
+        g: fp_v2_g_slide.value,
+        L: 67 / 10,
+        initial_y: 0.1,
+        initial_u: 0,
+        initial_v: 0,
+    }, true);
+}
+
+const fp_v2_RESET_BTN = document.getElementById('fp_v2_resetBtn');
+fp_v2_RESET_BTN.onclick = function () {
+    if (window.animinterval_v2)
+        clearInterval(window.animinterval_v2);
+    createFPPlotv2(); // resets the plot
+
+    fp_v2_lat_input.value = window.defaultInputv2.lat,
+        fp_v2_tday_input.value = window.defaultInputv2.tday,
+        fp_v2_dt_input.value = window.defaultInputv2.dt,
+        fp_v2_g_slide.value = window.defaultInputv2.g;
+
+}
+
+let fp_v2_input_fields = document.getElementsByName("fp_v2_input_field");
+for (let entry = 0; entry < fp_v2_input_fields.length; entry++) {
+    fp_v2_input_fields[entry].onchange = function () {
+        updateFPPlotv2({
+            lat: fp_v2_lat_input.value,
+            tday: fp_v2_tday_input.value,
+            dt: fp_v2_dt_input.value,
+            g: fp_v2_g_slide.value,
+            L: 67 / 10,
+            initial_y: 0.1,
+            initial_u: 0,
+            initial_v: 0,
+        });
+    }
+}
+
+
+
+
+
+
+window.onload(createFPPlotv2())
+
+
+
+
+/* ----- EOF ----- ----- ----- ----- ----- ----- ----- ----- */
