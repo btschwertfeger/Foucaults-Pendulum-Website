@@ -65,11 +65,11 @@ function sleep(time) {
     // });
 }
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// main functions
+// ----- ----- M A I N - F U N C T I O N S----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+
 window.defaultInput = {
     g: 9.8, // gravity
-    L: 67,
+    L: 67, // eigentlich / 10
     R: 0.1, //angular speed of earth
     lamda: 3, //latitude
     k_1: 1,
@@ -77,6 +77,7 @@ window.defaultInput = {
     time: arange(0, 222, 0.5) // time
 }
 
+// ---- C O M P U T A T I O N
 function computeFP(input = window.defaultInput) {
     // a_= 1i * (mathjs.sqrt(g / L) * time)
     let a_ = [...new Array(input.time.length)].map((elem, index) => complex(0, sqrt(input.g / input.L) * input.time[index]));
@@ -123,7 +124,7 @@ function computeFP(input = window.defaultInput) {
         y: y
     }
 }
-
+// ---- C R E A T E - P L O T A B L E - D A T A S E T S
 function createData(input) {
     let values = []
     for (let i = 0; i < input.x.length; i++) {
@@ -145,6 +146,7 @@ function createData(input) {
     return data;
 }
 
+// ---- P L O T T I N G
 function createFPPlot(input = window.defaultInput) {
 
     const RESULT = computeFP(input);
@@ -232,10 +234,10 @@ function updateFPPlot(input, animate = false) {
     }
 }
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// handle input
+// ----- U S E R - I N P U T - H A N D L I N G ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
 
-const fp_g_slide = document.getElementById("fp_g_slide"),
+const
+    fp_g_slide = document.getElementById("fp_g_slide"),
     fp_R_slide = document.getElementById("fp_R_slide"),
     fp_lambda_input = document.getElementById("fp_X_input_lambda"),
     fp_k1_input = document.getElementById("fp_X_input_k_1"),
@@ -247,90 +249,88 @@ const fp_g_slide = document.getElementById("fp_g_slide"),
 
 // ----- ----- ----- ----- ----- ----- ----- ----- -----
 
-const fp_AGAIN_BTN = document.getElementById('fp_animate');
-fp_AGAIN_BTN.onclick = function () {
-    updateFPPlot({
-        g: fp_g_slide.value,
-        L: 67,
-        R: fp_R_slide.value,
-        lamda: fp_lambda_input.value,
-        k_1: fp_k1_input.value,
-        k_2: fp_k2_input.value,
-        time: arange(0, 222, 0.5)
-    }, true);
-}
+// const fp_AGAIN_BTN = document.getElementById('fp_animate');
+// fp_AGAIN_BTN.onclick = function () {
+//     updateFPPlot({
+//         g: fp_g_slide.value,
+//         L: window.defaultInput.L, //67,
+//         R: fp_R_slide.value,
+//         lamda: fp_lambda_input.value,
+//         k_1: window.defaultInput.k_1, //fp_k1_input.value,
+//         k_2: window.defaultInput.k_2, //fp_k2_input.value,
+//         time: window.defaultInput.time, //arange(0, 222, 0.5)
+//     }, true);
+// }
 
-const fp_RESET_BTN = document.getElementById('fp_resetBtn');
-fp_RESET_BTN.onclick = function () {
-    if (window.animinterval)
-        clearInterval(window.animinterval);
-    createFPPlot(); // resets the plot
+// const fp_RESET_BTN = document.getElementById('fp_resetBtn');
+// fp_RESET_BTN.onclick = function () {
+//     if (window.animinterval)
+//         clearInterval(window.animinterval);
+//     createFPPlot(); // resets the plot
 
-    fp_g_slide.value = window.defaultInput.g,
-        fp_R_slide.value = window.defaultInput.R;
+//     fp_g_slide.value = window.defaultInput.g,
+//         fp_R_slide.value = window.defaultInput.R;
 
-    // fp_slider.forEach((element, index) => { // resets the sliders
-    //     const default_value = window.defaultInput[fp_plot_variables[index]];
-    //     document.getElementById(element.id).value = default_value;
-    // });
-    fp_value_fields.forEach((element, index) => { // Reset value fields
-        const default_value = window.defaultInput[fp_plot_variables[index]];
-        document.getElementById(element.id).innerHTML = default_value;
-    });
-    fp_lambda_input.value = window.defaultInput.lamda,
-        fp_k1_input.value = window.defaultInput.k_1,
-        fp_k2_input.value = window.defaultInput.k_2;
+//     // fp_slider.forEach((element, index) => { // resets the sliders
+//     //     const default_value = window.defaultInput[fp_plot_variables[index]];
+//     //     document.getElementById(element.id).value = default_value;
+//     // });
+//     fp_value_fields.forEach((element, index) => { // Reset value fields
+//         const default_value = window.defaultInput[fp_plot_variables[index]];
+//         document.getElementById(element.id).innerHTML = default_value;
+//     });
+//     fp_lambda_input.value = window.defaultInput.lamda,
+//         fp_k1_input.value = window.defaultInput.k_1,
+//         fp_k2_input.value = window.defaultInput.k_2;
 
-}
-// // -----
-for (let entry = 0; entry < fp_slider.length; entry++) {
-    fp_slider[entry].oninput = function () {
-        let elem_id = fp_slider[entry].id;
-        elem_id = elem_id.substring(0, elem_id.length - 5)
-        document.getElementById(elem_id + "value").innerHTML = document.getElementById(fp_slider[entry].id).value;
-    }
-    fp_slider[entry].onchange = function () {
-        updateFPPlot({
-            g: fp_g_slide.value,
-            L: 67,
-            R: fp_R_slide.value,
-            lamda: fp_lambda_input.value,
-            k_1: fp_k1_input.value,
-            k_2: fp_k2_input.value,
-            time: arange(0, 222, 0.5) // time
-        });
-    }
-}
+// }
 
-for (let entry = 0; entry < fp_input_fields.length; entry++) {
-    fp_input_fields[entry].onchange = function () {
-        updateFPPlot({
-            g: fp_g_slide.value,
-            L: 67,
-            R: fp_R_slide.value,
-            lamda: fp_lambda_input.value,
-            k_1: fp_k1_input.value,
-            k_2: fp_k2_input.value,
-            time: arange(0, 222, 0.5) // time
-        });
-        console.log("!")
-    }
-}
+// for (let entry = 0; entry < fp_slider.length; entry++) {
+//     fp_slider[entry].oninput = function () {
+//         let elem_id = fp_slider[entry].id;
+//         elem_id = elem_id.substring(0, elem_id.length - 5)
+//         document.getElementById(elem_id + "value").innerHTML = document.getElementById(fp_slider[entry].id).value;
+//     }
+//     fp_slider[entry].onchange = function () {
+//         updateFPPlot({
+//             g: fp_g_slide.value,
+//             L: window.defaultInput.L,
+//             R: fp_R_slide.value,
+//             lamda: fp_lambda_input.value,
+//             k_1: window.defaultInput.k_1, //fp_k1_input.value,
+//             k_2: window.defaultInput.k_2, //fp_k2_input.value,
+//             time: window.defaultInput.time,
+//         });
+//     }
+// }
+
+// for (let entry = 0; entry < fp_input_fields.length; entry++) {
+//     fp_input_fields[entry].onchange = function () {
+//         updateFPPlot({
+//             g: fp_g_slide.value,
+//             L: window.defaultInput.L,
+//             R: fp_R_slide.value,
+//             lamda: fp_lambda_input.value,
+//             k_1: window.defaultInput.k_1, //fp_k1_input.value,
+//             k_2: window.defaultInput.k_2, //fp_k2_input.value,
+//             time: window.defaultInput.time,
+//         });
+//     }
+// }
 
 // -----
 
-// ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
-// ...
-window.onload = createFPPlot()
+// ----- R U N - T H E - S I M P L E - O N E ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- 
+// uncomment the button configuration above !
+// window.onload = createFPPlot()
+/* -- -- -- -- -- -- -- -- -- */
 
-
-
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
-/* VERSION 2 */
+/* ----- ----- ----- ----- ----- V E R S I O N - 2 ----- ----- ----- ----- ----- */
 
 window.defaultInputv2 = {
     // user defined variabels
@@ -380,7 +380,7 @@ function computeFPv2(input = window.defaultInputv2) {
     y_dd[0] = a_y(x_d[0], y[0])
     //plot(x[1], y[1], xlim = c(-1, 1), ylim = c(-1, 1))
 
-    console.log(x, y, x_d, x_dd, y_d, y_dd)
+    // console.log(x, y, x_d, x_dd, y_d, y_dd)
 
     // loop over everything
     for (let i = 1; i < input.tday; i++) {
@@ -391,7 +391,7 @@ function computeFPv2(input = window.defaultInputv2) {
         x.push(x[i - 1] + x_d[i] * input.dt)
         y.push(y[i - 1] + y_d[i] * input.dt)
     }
-    console.log(x)
+    // console.log(x)
 
     return {
         x: x,
@@ -417,6 +417,7 @@ function createDatav2(input) {
             showLine: true,
             pointRadius: 0,
             borderColor: 'blue',
+            borderWidth: 1
         }],
     };
     return data;
@@ -436,7 +437,7 @@ function createFPPlotv2(input = window.defaultInputv2) {
             plugins: {
                 title: {
                     display: true,
-                    text: '',
+                    text: "Foucaults Pendelum movement",
                     font: {
                         Family: window.font_famliy,
                         size: 16,
@@ -479,17 +480,17 @@ function createFPPlotv2(input = window.defaultInputv2) {
 
     document.getElementById('fp_v2_line_plot').remove();
     document.getElementById('fp_v2_line_plot_container').innerHTML = '<canvas id="fp_v2_line_plot"></canvas>';
-    let ctx1 = document.getElementById('fp_v2_line_plot');
-    window.fp_line_chart = new Chart(ctx1, config);
+    let ctx = document.getElementById('fp_v2_line_plot');
+    window.fp_v2_line_chart = new Chart(ctx, config);
 }
 
 function animatePlotv2() {
-    window.fp_line_chart.data.datasets[0].data.push(window.xyData[window.animationIndex]);
+    window.fp_v2_line_chart.data.datasets[0].data.push(window.xyData[window.animationIndex]);
     if (animationIndex > 100) {
-        window.fp_line_chart.data.datasets[0].data.shift()
+        window.fp_v2_line_chart.data.datasets[0].data.shift()
     }
     window.animationIndex += 1;
-    window.fp_line_chart.update()
+    window.fp_v2_line_chart.update()
     if (window.animationIndex >= window.xyData.length) {
         clearInterval(window.animinterval_v2);
     }
@@ -499,35 +500,41 @@ function updateFPPlotv2(input, animate = false) {
     const RESULT = computeFPv2(input);
     const DATA = createDatav2(RESULT);
     if (!animate) {
-        window.fp_line_chart.data = DATA
-        window.fp_line_chart.update()
+        window.fp_v2_line_chart.data = DATA
+        window.fp_v2_line_chart.update()
     } else {
         window.animationIndex = 0;
         window.xyData = DATA.datasets[0].data;
 
-        window.fp_line_chart.data.datasets[0].data = [];
-        window.fp_line_chart.options.animation = false;
-        window.fp_line_chart.update();
+        window.fp_v2_line_chart.data.datasets[0].data = [];
+        window.fp_v2_line_chart.options.animation = false;
+        window.fp_v2_line_chart.update();
         window.animinterval_v2 = setInterval(animatePlotv2, 20);
     }
 }
 
-const fp_v2_lat_input = document.getElementById("fp_v2_X_input_lat"),
-    fp_v2_dt_input = document.getElementById("fp_v2_X_input_dt"),
-    fp_v2_tday_input = document.getElementById("fp_v2_X_input_tday"),
-    fp_v2_g_slide = document.getElementById("fp_v2_g_slide");
 
-const fp_v2_AGAIN_BTN = document.getElementById('fp_v2_animateBtn');
-fp_v2_AGAIN_BTN.onclick = function () {
+
+const
+    fp_v2_lat_input = document.getElementById("fp_v2_X_input_lat"),
+    // fp_v2_dt_input = document.getElementById("fp_v2_X_input_dt"),
+    //fp_v2_tday_input = document.getElementById("fp_v2_X_input_tday"),
+    fp_v2_L_input = document.getElementById("fp_v2_X_input_L"),
+    fp_v2_g_slide = document.getElementById("fp_v2_g_slide"),
+    fp_v2_slider = document.getElementsByName("fp_v2_slide"),
+    fp_v2_g_value_field = document.getElementById("fp_v2_g_value");
+
+const fp_v2_ANIMATE_BTN = document.getElementById('fp_v2_animateBtn');
+fp_v2_ANIMATE_BTN.onclick = function () {
     updateFPPlotv2({
         lat: fp_v2_lat_input.value,
-        tday: fp_v2_tday_input.value,
-        dt: fp_v2_dt_input.value,
+        tday: window.defaultInputv2.tday, //fp_v2_tday_input.value,
+        dt: window.defaultInputv2.dt, //fp_v2_dt_input.value,
         g: fp_v2_g_slide.value,
-        L: 67 / 10,
-        initial_y: 0.1,
-        initial_u: 0,
-        initial_v: 0,
+        L: fp_v2_L_input.value,
+        initial_y: window.defaultInputv2.initial_y,
+        initial_u: window.defaultInputv2.initial_u,
+        initial_v: window.defaultInputv2.initial_v,
     }, true);
 }
 
@@ -535,39 +542,60 @@ const fp_v2_RESET_BTN = document.getElementById('fp_v2_resetBtn');
 fp_v2_RESET_BTN.onclick = function () {
     if (window.animinterval_v2)
         clearInterval(window.animinterval_v2);
-    createFPPlotv2(); // resets the plot
+    //createFPPlotv2(); // resets the plot
 
-    fp_v2_lat_input.value = window.defaultInputv2.lat,
-        fp_v2_tday_input.value = window.defaultInputv2.tday,
-        fp_v2_dt_input.value = window.defaultInputv2.dt,
-        fp_v2_g_slide.value = window.defaultInputv2.g;
+    fp_v2_lat_input.value = window.defaultInputv2.lat;
+    //fp_v2_tday_input.value = window.defaultInputv2.tday
+    // fp_v2_dt_input.value = window.defaultInputv2.dt;
+    fp_v2_L_input.value = window.defaultInputv2.L;
+    fp_v2_g_slide.value = window.defaultInputv2.g;
+    fp_v2_g_value_field.innerHTML = window.defaultInputv2.g;
 
+    window.fp_v2_line_chart.data.datasets[0].data = [];
+    window.fp_v2_line_chart.update();
 }
 
-let fp_v2_input_fields = document.getElementsByName("fp_v2_input_field");
-for (let entry = 0; entry < fp_v2_input_fields.length; entry++) {
-    fp_v2_input_fields[entry].onchange = function () {
-        updateFPPlotv2({
-            lat: fp_v2_lat_input.value,
-            tday: fp_v2_tday_input.value,
-            dt: fp_v2_dt_input.value,
-            g: fp_v2_g_slide.value,
-            L: 67 / 10,
-            initial_y: 0.1,
-            initial_u: 0,
-            initial_v: 0,
-        });
+// let fp_v2_input_fields = document.getElementsByName("fp_v2_input_field");
+// for (let entry = 0; entry < fp_v2_input_fields.length; entry++) {
+//     fp_v2_input_fields[entry].onchange = function () {
+//         updateFPPlotv2({
+//             lat: parseInt(fp_v2_lat_input.value),
+//             tday: window.defaultInputv2.tday, //parseFloat(fp_v2_tday_input.value),
+//             dt: window.defaultInputv2.dt, //parseInt(fp_v2_dt_input.value),
+//             g: parseFloat(fp_v2_g_slide.value),
+//             L: fp_v2_L_input.value,
+//             initial_y: window.defaultInputv2.initial_y,
+//             initial_u: window.defaultInputv2.initial_u,
+//             initial_v: window.defaultInputv2.initial_v,
+//         });
+//     }
+// }
+
+for (let entry = 0; entry < fp_v2_slider.length; entry++) {
+    fp_v2_slider[entry].oninput = function () {
+        let elem_id = fp_v2_slider[entry].id;
+        elem_id = elem_id.substring(0, elem_id.length - 5)
+        document.getElementById(elem_id + "value").innerHTML = document.getElementById(fp_v2_slider[entry].id).value;
     }
+    // fp_v2_slider[entry].onchange = function () {
+    //     updateFPPlotv2({
+    //         lat: fp_v2_lat_input.value,
+    //         tday: window.defaultInputv2.tday, //parseFloat(fp_v2_tday_input.value),
+    //         dt: window.defaultInputv2.dt, //parseInt(fp_v2_dt_input.value),
+    //         g: fp_v2_g_slide.value,
+    //         L: fp_v2_L_input.value,
+    //         initial_y: window.defaultInputv2.initial_y,
+    //         initial_u: window.defaultInputv2.initial_u,
+    //         initial_v: window.defaultInputv2.initial_v,
+    //     });
+    // }
 }
 
+window.onload = createFPPlotv2()
+
+// clear data to avoid wrong visuals bc of to many points
+window.fp_v2_line_chart.data.datasets[0].data = [];
+window.fp_v2_line_chart.update();
 
 
-
-
-
-window.onload(createFPPlotv2())
-
-
-
-
-/* ----- EOF ----- ----- ----- ----- ----- ----- ----- ----- */
+/* ----- E O F ----- ----- ----- ----- ----- ----- ----- ----- */

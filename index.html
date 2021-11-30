@@ -27,39 +27,44 @@
         <script type="module" src="main_bundle.js"></script>
     </head>
     <body>
+        <img
+            src="https://upload.wikimedia.org/wikipedia/commons/f/f7/AWI_Logo_2017.svg"
+            style="position:absolute; right: 10px; top: 10px; width: 15%;" \>
         <div class="main">
             <div class="placeholder" style="width:100%; height:42px"></div>
             <div id="headline_content" style="text-align:center;">
                 <h1>Foucaults Pendelum</h1><br>
-                <p>
-                    The Foucault pendulum, named after the French physicist <a
+                <p style="padding: 0px 15px 0px 15px;">
+                    The Foucault pendulum, named after its inventor, the French
+                    physicist <a
                         href="https://en.wikipedia.org/wiki/L%C3%A9on_Foucault"
                         target="_blank">Léon
-                        Foucault</a>, is a long spherical pendulum with a large
-                    mass
-                    at
-                    the lower end. This pendulum is so large that the
-                    earth's
-                    rotation influences its trajectory. By this change of
-                    the
-                    trajectory it can be proved that the earth rotates.
+                        Foucault</a>, is a very long spherical pendulum
+                    with a large mass at the bottom. In an experiment with such
+                    a pendulum in 1851, Foucault was able to prove for the first
+                    time in a simple way that the earth rotates. Before that,
+                    one always had to rely on long observations of the night sky
+                    and calculations. With this experiment, it has been possible
+                    to make the earth's rotation accessible in a relatively
+                    simple way, even to people with little or no knowledge of
+                    physics.
                 </p>
-                <p>
+                <h4 style="text-align: left;">References</h4>
+                <p style="padding: 0px 15px 0px 15px ;">
                     &emsp; ☞ <a target="_blank"
-                        href="https://www.researchgate.net/publication/283123817_Das_Foucaultsche_Pendel_im_AZM">German
-                        paper</a>
-                </p>
-                <p>
-                    &emsp; ☞ Python implementation and explaination: <a
-                        target="_blank"
-                        href="https://github.com/singhmeet11/Foucalt-s-pendulum-a-simple-proof-that-earth-rotates">GitHub</a>
+                        href="https://www.kip.uni-heidelberg.de/image/f/oeffwiss/pendel/Foucault.pdf">
+                        The Foucault Pendulum
+                    </a> - a Simplified Trajectory
+                    Analysis for a Pendulum on a Turntable and an
+                    Outlook to a Pendulum on Earth, A. Reiser annd J. Stiewe
+                    (2018)
                 </p>
             </div>
 
             <!-- MAIN v1 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
+            <!--             
             <div id="main_v1-wrapper">
                 <div class="wrapper">
-                    <!-- PLOT -->
                     <div class="content-left">
                         <div class="fp-plot-content-wrapper">
                             <div id="fp_line_plot_container"
@@ -113,23 +118,13 @@
                                         name="fp_input_field"
                                         class="fp_X_input_field" value=1 />
                                 </div>
-
-                                <!-- <div class="fp-input-wrapper input-wrapper"
-                            style="min-width: 100px;">
-                            <div>random start value</div>
-                            <label class="switch">
-                                <input id="fp_randomStartValueCheckbox"
-                                    type="checkbox">
-                                <span class="switch-slider"></span>
-                            </label>
-                        </div> -->
                                 <button class="someBtn" id="fp_animate">Animate</button>
                                 <button class="someBtn" id="fp_resetBtn">Reset</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- INFORMATION -->
+                   
                     <div class="content-right">
                         <div class="description">
                             <h3>Proof that the earth is rotating.</h3>
@@ -145,7 +140,8 @@
                 </div>
             </div>
 
-            <div class="placeholder" style="width:100%; height: 70px;"></div>
+            <div class="placeholder" style="width:100%; height: 70px;"></div> 
+        -->
             <!-- MAIN v2 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
             <div id="main_v2-wrapper">
                 <div class="wrapper">
@@ -161,7 +157,7 @@
                             <div id="fp_v2_input_section"
                                 class="fp-input-section">
                                 <div class="fp-input-wrapper input-wrapper">
-                                    <div>Gravity</div>
+                                    <div>\(g\)</div>
                                     <div id="fp_v2_g_value"
                                         name="fp_v2_slide_value"
                                         class="fp-slide-value slide-value">9.8</div>
@@ -173,25 +169,34 @@
                                 </div>
 
                                 <div class="X-input-wrapper">
-                                    Lat v2:
+                                    \(lat\):
                                     <input id="fp_v2_X_input_lat" type="text"
                                         name="fp_v2_input_field"
                                         class="fp_X_input_field" value=49 />
                                 </div>
-                                <div class="X-input-wrapper">
-                                    tday:
+                                <!-- <div class="X-input-wrapper">
+                                    \(d_t\):
                                     <input id="fp_v2_X_input_dt" type="text"
                                         name="fp_v2_input_field"
                                         class="fp_X_input_field" value=1 />
                                 </div>
                                 <div class="X-input-wrapper">
-                                    tday:
+                                    \(t_{day}\):
                                     <input id="fp_v2_X_input_tday" type="text"
                                         name="fp_v2_input_field"
                                         class="fp_X_input_field" value=86400 />
+                                </div> -->
+                                <div class="X-input-wrapper">
+                                    \(L\):
+                                    <input id="fp_v2_X_input_L" type="text"
+                                        name="fp_v2_input_field"
+                                        class="fp_X_input_field" value=6.7 />
                                 </div>
-                                <button class="someBtn" id="fp_v2_animateBtn">Animate</button>
-                                <button class="someBtn" id="fp_v2_resetBtn">Reset</button>
+                                <div class="fp-input-wrapper input-wrapper">
+                                    <button class="someBtn"
+                                        id="fp_v2_animateBtn">Animate</button>
+                                    <button class="someBtn" id="fp_v2_resetBtn">Reset</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -199,15 +204,42 @@
                     <!-- INFORMATION -->
                     <div class="content-right">
                         <div class="description">
-                            <h3>Proof that the earth is rotating.</h3>
+                            <h2>Proof that the earth is rotating</h2>
+                            <h4>How is this experiment performed?</h4>
                             <p>
-                                Version 2
-
+                                The pendulum is set up at a fixed point and
+                                brought into an initial position, where the
+                                release of a band with the help of fire sets the
+                                pendulum in swinging motion. This is to prevent
+                                unwanted movement and additional swing and spin.
+                            </p>
+                            <h4>What can be observed?</h4>
+                            <p>
+                                At the poles of our earth, after about 23.93
+                                hours, it would look as if the pendulum had
+                                turned 360°, but in fact it is the earth
+                                that turns under the pendulum and this turn is
+                                not transmitted to the swinging object. At the
+                                equator this is different,
+                                because there the path of the pendulum does not
+                                seem to
+                                change. This is due to the fact that a day on
+                                earth, with its almost 24 hours, divided by the
+                                sine of the latitude at the equator is 0. (
+                                \(0=\frac{23,93}{sin(0)}\))
                             </p>
                             <p>
-                                PLACEHOLDER TEXT
+                                &emsp; ☞ <a
+                                    target="_blank"
+                                    href="FoucaultsPendelum.txt">view</a> R
+                                implementation
                             </p>
-
+                            <p>
+                                &emsp; ☞ <a href="FoucaultsPendelum.ipynb"
+                                    target="_blank">View</a> or <a
+                                    href="FoucaultsPendelum.html"
+                                    target="_blank">downliad</a>Jupyter Notebook
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -216,7 +248,7 @@
 
 
             <div class="placeholder" style="height:62px; width:100%;"></div>
-            <div id="imgs-container">
+            <!--<div id="imgs-container">
                 <div class="img-container">
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/2/22/FoucaultGlobusAnima.gif">
@@ -227,16 +259,14 @@
                             href="https://upload.wikimedia.org/wikipedia/commons/2/22/FoucaultGlobusAnima.gif">Wikipedia</a>
                     </p>
                 </div>
-            </div>
-
-
+            </div> -->
             <!-- FOOTER -->
             <div class="placeholder"
                 style="width:100%;height:62px;"></div>
             <div id="footer" style="text-align:center; margin:0 auto; width:
-                50%; font-size: 16px;">Copyright © 2021 <a
+                50%; font-size: 16px;">Site developed by <a
                     href="https://www.b-schwertfeger.de">Benjamin
-                    T. Schwertfeger</a>
+                    T. Schwertfeger</a> © 2021
             </div>
             <div class="placeholder" style="width:100%;height:100px;"></div>
         </body>

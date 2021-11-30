@@ -1,0 +1,66 @@
+# Faucault Pendulum
+
+# User defined Variables
+lat = 49
+tday = 86400 # Length of one Day in seconds
+tmax= tday*2 # Time of simulation in seconds
+dt=1
+
+# Initial Conditions
+g = 9.81 # m/s**2, acceleration due to gravity
+L = 67/10 # length of pendulum string
+initial_x = L/100 # initial x coordinate
+initial_y = 0.1 # initial y
+initial_u = 0 # initial u
+initial_v = 0 # initial v
+
+# Definitions based on User Variables
+Omega = 2*pi/tday
+phi = lat/180 * pi
+
+sphi=sin(phi)
+
+
+# set up vectors for x, x_d, x_dd, and y, y_d, y_dd
+x = vector() # x+x_d*t
+x_d = vector() # x_d + x_dd*t
+x_dd = vector() # 2*Omega*phi*y_d-(g/L)*x
+y = vector() # y+y_d*t
+y_d = vector() # y_d + y_dd*t
+y_dd = vector() # -2*Omega*phi*x_d-(g/L)*y
+
+a_x <- function(yd, r){
+ax = 2*Omega*sphi*yd-(g/L)*r
+return(ax)
+}
+
+a_y <- function(xd, r){
+ay = -2*Omega*sphi*xd-(g/L)*r
+return(ay)
+}
+
+# Initialize vectors
+x[1] = initial_x
+y[1] = initial_y
+x_d[1] = initial_u
+y_d[1] = initial_v
+x_dd[1] = a_x(y_d[1], x[1])
+y_dd[1] = a_y(x_d[1], y[1])
+plot(x[1], y[1], xlim=c(-1,1), ylim=c(-1,1))
+
+# loop over everything and plot
+for (i in 2:tmax) {
+    x_dd[i] =  a_x(y_d[i-1], x[i-1])
+    y_dd[i] =  a_y(x_d[i-1], y[i-1])
+    x_d[i] = x_d[i-1] + x_dd[i]  *dt
+    y_d[i] = y_d[i-1] + y_dd[i]  *dt
+    x[i] = x[i-1] + x_d[i] *dt
+    y[i] = y[i-1] + y_d[i] *dt
+    if ((i %% 5)==0) points(x[i], y[i],col = "blue", cex = 0.5)
+    #lines(x[i], y[i],col = i, cex = 0.5)
+}
+
+#plot(x, y)
+#if ((i %% 5)==0) points(x[i], y[i],col = "blue", cex = 0.5)
+
+if ((i %% 1)==0) points(x[i], y[i],col = "blue", cex = 0.5)
