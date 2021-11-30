@@ -13,11 +13,11 @@ the equator is 0. $$0=\frac{23.99}{sin(0)}$$
 
 ## References
 
-- Gerrit Lohmann (Alfred-Wegener-Institute, Bremerhaven, Germany), provided a R implementation of the equations of the pendelum
+- Gerrit Lohmann (Alfred-Wegener-Institute, Bremerhaven, Germany), provided a R implementation of the equations of the pendulum
 
 - <a target="_blank" href="https://www.kip.uni-heidelberg.de/image/f/oeffwiss/pendel/Foucault.pdf"> The Foucault Pendulum </a> - a Simplified Trajectory Analysis for a Pendulum on a Turntable and an Outlook to a Pendulum on Earth, A. Reiser annd J. Stiewe (2018)
 
 ## License
 
 This website and the attached notebook are available as learning materials for lectures and similar events.
-This can be found [here](https://b-schwertfeger.de/projects/awi-work/foucaults-pendelum/).
+This can be found [here](https://b-schwertfeger.de/projects/awi-work/foucaults-pendulum/).

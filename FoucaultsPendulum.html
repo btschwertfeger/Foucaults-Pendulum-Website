@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FoucaultsPendelum</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>FoucaultsPendulum</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14260,7 +14260,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/AWI_Logo_2017.svg" style="position:absolute; right: 10px; top: 10px; width: 15%;"></p>
-<h1 id="-Foucaults-Pendelum-"><center> Foucaults Pendelum </center><a class="anchor-link" href="#-Foucaults-Pendelum-">&#182;</a></h1><h1 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h1><ol>
+<h1 id="-Foucaults-Pendulum-"><center> Foucaults Pendulum </center><a class="anchor-link" href="#-Foucaults-Pendulum-">&#182;</a></h1><h1 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h1><ol>
 <li><a href="#introduction">Introduction</a> <br></li>
 <li><a href="#imports">Imports &amp; settings</a><br></li>
 <li><a href="#impl">Implementation</a><br>
@@ -14270,7 +14270,7 @@ a.anchor-link {
 <h1 id="1.-Introduction-">1. Introduction <a name="introduction" /><a class="anchor-link" href="#1.-Introduction-">&#182;</a></h1><p>The Foucault pendulum, named after its inventor, the French
 physicist <a href="https://en.wikipedia.org/wiki/L%C3%A9on_Foucault"
 target="_blank">Léon Foucault</a>, is a very long spherical pendulum swith a large mass at the bottom. In an experiment with such sa pendulum in 1851, Foucault was able to prove for the first stime in a simple way that the earth rotates. Before that, sone always had to rely on long observations of the night sky sand calculations. With this experiment, it has been possible sto make the earth's rotation accessible in a relatively ssimple way, even to people with little or no knowledge of sphysics.</p>
-<p>Download the notebook from <i><a href="FoucaultsPendelum.ipynb" downlaod>here</a></i>.</p>
+<p>Download the notebook from <i><a href="FoucaultsPendulum.ipynb" downlaod>here</a></i>.</p>
 <h3 id="How-is-this-experiment-performed?">How is this experiment performed?<a class="anchor-link" href="#How-is-this-experiment-performed?">&#182;</a></h3><p>The pendulum is set up at a fixed point and brought into an initial position, where the release of a band with the help of fire sets the pendulum in swinging motion. This is to prevent unwanted movement and additional swing and spin.</p>
 <h3 id="What-can-be-observed?">What can be observed?<a class="anchor-link" href="#What-can-be-observed?">&#182;</a></h3><p>At the poles of our earth, after about 23.93 hours, it would look as if the pendulum had turned 360°, but in fact it is the earth that turns under the pendulum and this turn is not transmitted to the swinging object. At the equator this is different, because there the path of the pendulum does not seem to change. This is due to the fact that a day on earth, with its almost 24 hours, divided by the sine of the latitude at the equator is 0. $$0=\frac{23.99}{sin(0)}$$</p>
 <p>Other references:</p>
@@ -14280,7 +14280,7 @@ target="_blank">Léon Foucault</a>, is a very long spherical pendulum swith a la
     </li>
 </ul><hr>
 <p>Notebook created by <a href="b-schwertfeger.de">Benjamin Thomas Schwertfeger</a> (December, 2021) <br>
-The calculation is based on a <a href="FoucaultsPendelum.txt" target="_blank">R script</a> by Prof. Dr. Gerrit Lohmann, Alfred-Wegener-Institue Bremerhaven (November, 2021)</p>
+The calculation is based on a <a href="FoucaultsPendulum.txt" target="_blank">R script</a> by Prof. Dr. Gerrit Lohmann, Alfred-Wegener-Institue Bremerhaven (November, 2021)</p>
 <p><a href="mailto:benjamin.schwertfeger@awi.de">benjamin.schwertfeger@awi.de</a><br>
 Alfred-Wegener-Institute <br>
 Helmholtz Centre for Polar and Marine Research<br></p>
@@ -14469,7 +14469,7 @@ Germany<br></p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="3.2-Interactive-Widget-">3.2 Interactive Widget <a name="wid" /><a class="anchor-link" href="#3.2-Interactive-Widget-">&#182;</a></h2><ul>
-<li>This download this notebook to use this interactive plot from <a href="FoucaultsPendelum.ipynb" downlaod><i>here</i></a>.</li>
+<li>This download this notebook to use this interactive plot from <a href="FoucaultsPendulum.ipynb" downlaod><i>here</i></a>.</li>
 </ul>
 
 </div>
@@ -14484,7 +14484,7 @@ Germany<br></p>
 
 <span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="n">begin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span><span class="n">step_size</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step_size</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step_size</span><span class="p">]);</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Foucaults Pendelum Movement&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Foucaults Pendulum Movement&quot;</span><span class="p">)</span>
 
 <span class="n">begin_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">tmax</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span> 
 <span class="n">end_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">tmax</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span> 
@@ -14535,9 +14535,9 @@ Germany<br></p>
 
 
 
-<div id="c72f07e8-1c55-460e-baf6-84281fb0c2c9" class="jupyter-widgets jp-OutputArea-output ">
+<div id="0124baf7-0754-437f-b440-cd1d086ffe58" class="jupyter-widgets jp-OutputArea-output ">
 <script type="text/javascript">
-var element = document.getElementById('c72f07e8-1c55-460e-baf6-84281fb0c2c9');
+var element = document.getElementById('0124baf7-0754-437f-b440-cd1d086ffe58');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "63948f00c32f4ecca9ac4c40f375db62", "version_major": 2, "version_minor": 0}
