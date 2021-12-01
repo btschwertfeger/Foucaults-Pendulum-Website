@@ -14314,8 +14314,7 @@ Germany<br></p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%matplotlib inline # &lt;- if this is set, the widget wont work</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14357,7 +14356,7 @@ Germany<br></p>
     <span class="c1"># Initial Conditions</span>
     <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span> <span class="c1"># m/s**2, acceleration due to gravity</span>
     <span class="n">L</span> <span class="o">=</span> <span class="mi">67</span><span class="o">/</span><span class="mi">10</span> <span class="c1"># length of pendulum string</span>
-    <span class="n">initial_x</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="mi">100</span> <span class="c1"># initial x coordinate</span>
+    <span class="n">initial_x</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="mi">100</span> <span class="c1"># initial x coordinate</span>
     <span class="n">initial_y</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># initial y</span>
     <span class="n">initial_u</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># initial u</span>
     <span class="n">initial_v</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># initial v</span>
@@ -14381,7 +14380,7 @@ Germany<br></p>
     <span class="n">x_dd</span> <span class="o">=</span> <span class="p">[</span><span class="n">a_x</span><span class="p">(</span><span class="n">y_d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="c1"># 2*Omega*phi*y_d-(g/L)*x</span>
     <span class="n">y_dd</span> <span class="o">=</span> <span class="p">[</span><span class="n">a_y</span><span class="p">(</span><span class="n">x_d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="c1"># -2*Omega*phi*x_d-(g/L)*y</span>
 
-    <span class="c1"># loop over everything and plot</span>
+    <span class="c1"># loop over all timesteps</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">tmax</span><span class="p">):</span>
         <span class="n">x_dd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_x</span><span class="p">(</span><span class="n">y_d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
         <span class="n">y_dd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_y</span><span class="p">(</span><span class="n">x_d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
@@ -14390,7 +14389,7 @@ Germany<br></p>
         <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
         <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y_d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> 
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="c1"># coordinates</span>
 </pre></div>
 
      </div>
@@ -14405,12 +14404,12 @@ Germany<br></p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># User defined Variables</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="mi">49</span>
-<span class="n">tday</span> <span class="o">=</span> <span class="mi">86400</span> <span class="c1"># Length of one Day in seconds</span>
-<span class="n">tmax</span> <span class="o">=</span> <span class="n">tday</span> <span class="o">*</span> <span class="mi">2</span> <span class="c1"># Time of simulation in seconds</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="mi">49</span> <span class="c1"># default: 49 | latitude</span>
+<span class="n">tday</span> <span class="o">=</span> <span class="mi">86400</span> <span class="c1"># default: 86400 | length of one Day in seconds</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="n">tday</span> <span class="o">*</span> <span class="mi">2</span> <span class="c1"># default: tday * 2 | time of simulation in seconds</span>
 <span class="n">dt</span><span class="o">=</span><span class="mi">1</span>
 
-<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">computeFP</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">tday</span><span class="p">,</span> <span class="n">tmax</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">computeFP</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">tday</span><span class="p">,</span> <span class="n">tmax</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span> 
 </pre></div>
 
      </div>
@@ -14429,7 +14428,7 @@ Germany<br></p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">tmax</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="mi">5</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">tmax</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="mi">5</span> <span class="c1"># &lt;- change this to see different movements</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step_size</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">:</span><span class="n">step_size</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Foucaults Pendeum Movement&quot;</span><span class="p">)</span>
@@ -14469,7 +14468,7 @@ Germany<br></p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="3.2-Interactive-Widget-">3.2 Interactive Widget <a name="wid" /><a class="anchor-link" href="#3.2-Interactive-Widget-">&#182;</a></h2><ul>
-<li>This download this notebook to use this interactive plot from <a href="FoucaultsPendulum.ipynb" downlaod><i>here</i></a>.</li>
+<li>Download this notebook <a href="FoucaultsPendulum.ipynb" downlaod><i>here</i></a> to use the interactive visualization. </li>
 </ul>
 
 </div>
@@ -14535,12 +14534,12 @@ Germany<br></p>
 
 
 
-<div id="0124baf7-0754-437f-b440-cd1d086ffe58" class="jupyter-widgets jp-OutputArea-output ">
+<div id="cc13b8ab-5bee-46ec-96f9-52ee2eb03c91" class="jupyter-widgets jp-OutputArea-output ">
 <script type="text/javascript">
-var element = document.getElementById('0124baf7-0754-437f-b440-cd1d086ffe58');
+var element = document.getElementById('cc13b8ab-5bee-46ec-96f9-52ee2eb03c91');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "63948f00c32f4ecca9ac4c40f375db62", "version_major": 2, "version_minor": 0}
+{"model_id": "e40ab655c1cf4ec69aea443c854c62eb", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
