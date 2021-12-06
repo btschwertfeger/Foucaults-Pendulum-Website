@@ -1,3 +1,5 @@
+# Provided by Gerrit Lohmann Alfred-Wegener-Institute Bremerhaven, Germany
+
 # Faucault Pendulum
 
 # User defined Variables

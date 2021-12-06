@@ -88,6 +88,15 @@ a:hover {
   color: red;
 }
 
+#footer a {
+  color: black;
+}
+
+#footer a:hover,
+a:hover {
+  color: red;
+}
+
 .input-wrapper {
   min-width: 230px; /*290px;*/
   margin: 5px;
