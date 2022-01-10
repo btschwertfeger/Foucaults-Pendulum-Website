@@ -1,4 +1,3 @@
 .DS_Store
 deploy.sh
-node_modules/
 .vscode/
