@@ -1,3 +1,5 @@
 .DS_Store
 deploy.sh
 .vscode/
+node_modules/
+.DS_Store

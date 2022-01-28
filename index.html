@@ -21,7 +21,7 @@
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
         </script>
         <!-- CALCULATION -->
-        <script type="module" src="main.js"></script>
+        <script type="module" src="main.bundle.js"></script>
     </head>
     <body>
         <img
@@ -59,7 +59,7 @@
             </div>
 
             <!-- MAIN v1 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
-            <!--             
+                      
             <div id="main_v1-wrapper">
                 <div class="wrapper">
                     <div class="content-left">
@@ -75,7 +75,7 @@
                                     <div>Gravity</div>
                                     <div id="fp_g_value"
                                         name="fp_slide_value"
-                                        class="fp-slide-value slide-value">9.8</div>
+                                        class="fp-slide-value slide-value">9.81</div>
                                     <input id="fp_g_slide" type="range"
                                         class="fp-slide slide"
                                         name="fp_slide"
@@ -96,104 +96,27 @@
                                 </div>
 
                                 <div class="X-input-wrapper">
-                                    Latitude:
+                                    \(lat\):
                                     <input id="fp_X_input_lambda" type="text"
                                         name="fp_input_field"
                                         class="fp_X_input_field" value=3 />
                                 </div>
 
                                 <div class="X-input-wrapper">
-                                    \(k_1\):
-                                    <input id="fp_X_input_k_1" type="text"
+                                    \(L\):
+                                    <input id="fp_X_input_L" type="text"
                                         name="fp_input_field"
-                                        class="fp_X_input_field" value=1 />
+                                        class="fp_X_input_field" value=6.7 />
                                 </div>
 
-                                <div class="X-input-wrapper">
+                                <!-- <div class="X-input-wrapper">
                                     \(k_2\):
                                     <input id="fp_X_input_k_2" type="text"
                                         name="fp_input_field"
                                         class="fp_X_input_field" value=1 />
-                                </div>
+                                </div> -->
                                 <button class="someBtn" id="fp_animate">Animate</button>
                                 <button class="someBtn" id="fp_resetBtn">Reset</button>
-                            </div>
-                        </div>
-                    </div>
-
-                   
-                    <div class="content-right">
-                        <div class="description">
-                            <h3>Proof that the earth is rotating.</h3>
-                            <p>
-                                Version 1
-
-                            </p>
-                            <p>
-                                PLACEHOLDER TEXT
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="placeholder" style="width:100%; height: 70px;"></div> 
-        -->
-            <!-- MAIN v2 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
-            <div id="main_v2-wrapper">
-                <div class="wrapper">
-                    <!-- PLOT -->
-                    <div class="content-left">
-                        <div class="fp-plot-content-wrapper">
-                            <div id="fp_v2_line_plot_container"
-                                class="fp-line-plot-container">
-                                <canvas id="fp_v2_line_plot" width=500
-                                    height=500
-                                    class="canvas"></canvas>
-                            </div>
-                            <div id="fp_v2_input_section"
-                                class="fp-input-section">
-                                <div class="fp-input-wrapper input-wrapper">
-                                    <div>\(g\)</div>
-                                    <div id="fp_v2_g_value"
-                                        name="fp_v2_slide_value"
-                                        class="fp-slide-value slide-value">9.81</div>
-                                    <input id="fp_v2_g_slide" type="range"
-                                        class="fp-slide slide"
-                                        name="fp_v2_slide"
-                                        min="0" max="20"
-                                        step="0.1" value="9.81">
-                                </div>
-
-                                <div class="X-input-wrapper">
-                                    \(lat\):
-                                    <input id="fp_v2_X_input_lat" type="text"
-                                        name="fp_v2_input_field"
-                                        class="fp_X_input_field" value=49 />
-                                </div>
-                                <!-- <div class="X-input-wrapper">
-                                    \(d_t\):
-                                    <input id="fp_v2_X_input_dt" type="text"
-                                        name="fp_v2_input_field"
-                                        class="fp_X_input_field" value=1 />
-                                </div>
-                                <div class="X-input-wrapper">
-                                    \(t_{day}\):
-                                    <input id="fp_v2_X_input_tday" type="text"
-                                        name="fp_v2_input_field"
-                                        class="fp_X_input_field" value=86400 />
-                                </div> -->
-                                <div class="X-input-wrapper">
-                                    \(L\):
-                                    <input id="fp_v2_X_input_L" type="text"
-                                        name="fp_v2_input_field"
-                                        class="fp_X_input_field" value=6.7 />
-                                </div>
-                                <div class="fp-input-wrapper input-wrapper">
-                                    <button class="someBtn"
-                                        id="fp_v2_animateBtn">Animate</button>
-                                    <button class="someBtn" id="fp_v2_resetBtn">Reset</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -239,12 +162,108 @@
                                 Jupyter
                                 Notebook
                             </p>
+                            <p>
+                                &emsp; ☞ Other visualization: <a href="https://javalab.org/en/foucault_pendulum_en/" target="_blank">javalab.org</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="placeholder" style="width:100%; height: 70px;"></div> 
+            
+            <!-- MAIN v2 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
+            <!-- <div id="main_v2-wrapper">
+                <div class="wrapper">
+                    PLOT 
+                    <div class="content-left">
+                        <div class="fp-plot-content-wrapper">
+                            <div id="fp_v2_line_plot_container"
+                                class="fp-line-plot-container">
+                                <canvas id="fp_v2_line_plot" width=500
+                                    height=500
+                                    class="canvas"></canvas>
+                            </div>
+                            <div id="fp_v2_input_section"
+                                class="fp-input-section">
+                                <div class="fp-input-wrapper input-wrapper">
+                                    <div>\(g\)</div>
+                                    <div id="fp_v2_g_value"
+                                        name="fp_v2_slide_value"
+                                        class="fp-slide-value slide-value">9.81</div>
+                                    <input id="fp_v2_g_slide" type="range"
+                                        class="fp-slide slide"
+                                        name="fp_v2_slide"
+                                        min="0" max="20"
+                                        step="0.1" value="9.81">
+                                </div>
 
+                                <div class="X-input-wrapper">
+                                    \(lat\):
+                                    <input id="fp_v2_X_input_lat" type="text"
+                                        name="fp_v2_input_field"
+                                        class="fp_X_input_field" value=49 />
+                                </div>
+                                <div class="X-input-wrapper">
+                                    \(L\):
+                                    <input id="fp_v2_X_input_L" type="text"
+                                        name="fp_v2_input_field"
+                                        class="fp_X_input_field" value=6.7 />
+                                </div>
+                                <div class="fp-input-wrapper input-wrapper">
+                                    <button class="someBtn"
+                                        id="fp_v2_animateBtn">Animate</button>
+                                    <button class="someBtn" id="fp_v2_resetBtn">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    INFORMATION
+                    <div class="content-right">
+                        <div class="description">
+                            <h2>Proof that the earth is rotating</h2>
+                            <h4>How is this experiment performed?</h4>
+                            <p>
+                                The pendulum is set up at a fixed point and
+                                brought into an initial position, where the
+                                release of a band with the help of fire sets the
+                                pendulum in swinging motion. This is to prevent
+                                unwanted movement and additional swing and spin.
+                            </p>
+                            <h4>What can be observed?</h4>
+                            <p>
+                                At the poles of our earth, after about 23.93
+                                hours, it would look as if the pendulum had
+                                turned 360°, but in fact it is the earth
+                                that turns under the pendulum and this turn is
+                                not transmitted to the swinging object. At the
+                                equator this is different,
+                                because there the path of the pendulum does not
+                                seem to
+                                change. This is due to the fact that a day on
+                                earth, with its almost 24 hours, divided by the
+                                sine of the latitude at the equator is 0 (
+                                \(0=\frac{23,93}{sin(0)}\)).
+                            </p>
+                            <p>
+                                &emsp; ☞ <a
+                                    target="_blank"
+                                    href="FoucaultsPendulum.txt">View</a> R
+                                implementation
+                            </p>
+                            <p>
+                                &emsp; ☞ <a href="FoucaultsPendulum.html"
+                                    target="_blank">View</a> or <a
+                                    href="FoucaultsPendulum.ipynb"
+                                    target="_blank" download>download</a>
+                                Jupyter
+                                Notebook
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
             <div class="placeholder" style="height:62px; width:100%;"></div>
             <!--<div id="imgs-container">
