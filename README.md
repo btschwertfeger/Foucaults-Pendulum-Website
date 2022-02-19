@@ -1,4 +1,4 @@
-# Foucault Pendulum
+# Foucault Pendulum Website
 
 The Foucault pendulum, named after its inventor, the French physicist [Léon Foucault](https://en.wikipedia.org/wiki/L%C3%A9on_Foucault), is a very long spherical pendulum with a large mass at the bottom. In an experiment with such a pendulum in 1851, Foucault was able to prove for the first time in a simple way that the earth rotates. Before that, one always had to rely on long observations of the night sky and calculations. With this experiment, it has been possible to make the earth's rotation accessible in a relatively simple way, even to people with little or no knowledge of physics.
 
@@ -20,4 +20,4 @@ the equator is 0. $$0=\frac{23.99}{sin(0)}$$
 ## License
 
 This website and the attached notebook are available as learning materials for lectures and similar events.
-This can be found [here](https://b-schwertfeger.de/projects/awi-work/foucaults-pendulum/).
+This can be found [here](https://b-schwertfeger.de/projects/awi-work/FoucaultsPendulum/).
