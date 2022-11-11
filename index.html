@@ -1,179 +1,195 @@
 <!--
- * @author Benjamin Thomas Schwertfeger (January 2022)
+ * @author Benjamin Thomas Schwertfeger (November 2022)
  * @email development@b-schwertfeger.de
  * @link https://github.com/btschwertfeger-AWI-Workspace/FoucaultsPendulumWebsite
 -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Foucaults Pendulum</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="format.css">
-        <link rel="icon" type="image/x-icon" href="https://www.awi.de/typo3conf/ext/sms_boilerplate/Resources/Public/Images/AWI/awi_logo.svg">
 
-        <!-- CHART JS -->
-        <script
-            src='https://cdn.jsdelivr.net/npm/chart.js@3.3.1/dist/chart.min.js'> </script>
-        <script id="MathJax-script" async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-        </script>
-        <!-- CALCULATION -->
-        <script type="module" src="main.bundle.js"></script>
-    </head>
-    <body>
-        <img
-            src="https://upload.wikimedia.org/wikipedia/commons/f/f7/AWI_Logo_2017.svg"
-            style="position:absolute; right: 10px; top: 10px; width: 15%;" \>
-        <div class="main">
-            <div class="placeholder" style="width:100%; height:42px"></div>
-            <div id="headline_content" style="text-align:center;">
-                <h1>Foucaults Pendulum</h1><br>
-                <p style="padding: 0px 15px 0px 15px;">
-                    The Foucault pendulum, named after its inventor, the French
-                    physicist <a
-                        href="https://en.wikipedia.org/wiki/L%C3%A9on_Foucault"
-                        target="_blank">Léon
-                        Foucault</a>, is a very long spherical pendulum
-                    with a large mass at the bottom. In an experiment with such
-                    a pendulum in 1851, Foucault was able to prove for the first
-                    time in a simple way that the earth rotates. Before that,
-                    one always had to rely on long observations of the night sky
-                    and calculations. With this experiment, it has been possible
-                    to make the earth's rotation accessible in a relatively
-                    simple way, even to people with little or no knowledge of
-                    physics.
-                </p>
-                <h4 style="text-align: left;">References</h4>
-                <p style="padding: 0px 15px 0px 15px ;">
-                    &emsp; ☞ <a target="_blank"
-                        href="https://www.kip.uni-heidelberg.de/image/f/oeffwiss/pendel/Foucault.pdf">
-                        The Foucault Pendulum
-                    </a> - a Simplified Trajectory
-                    Analysis for a Pendulum on a Turntable and an
-                    Outlook to a Pendulum on Earth, A. Reiser and J. Stiewe
-                    (2018)
-                </p>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Foucaults Pendulum</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="format.css">
+    <link rel="icon" type="image/x-icon"
+        href="https://www.awi.de/typo3conf/ext/sms_boilerplate/Resources/Public/Images/AWI/awi_logo.svg">
 
-            <!-- MAIN v1 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
-                      
-            <div id="main_v1-wrapper">
-                <div class="wrapper">
-                    <div class="content-left">
-                        <div class="fp-plot-content-wrapper">
-                            <div id="fp_line_plot_container"
-                                class="fp-line-plot-container">
-                                <canvas id="fp_line_plot" width=500 height=500
-                                    class="canvas"></canvas>
+    <!-- CHART JS -->
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@3.3.1/dist/chart.min.js'> </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <!-- CALCULATION -->
+    <script type="module" src="main.bundle.js"></script>
+</head>
+
+<body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/AWI_Logo_2017.svg"
+        style="position:absolute; right: 10px; top: 10px; width: 15%;" \>
+    <div class="main">
+        <div class="placeholder" style="width:100%; height:42px"></div>
+        <div id="headline_content" style="text-align:center;">
+            <h1>Foucaults Pendulum</h1><br>
+            <p style="padding: 0px 15px 0px 15px;">
+                The Foucault pendulum, named after its inventor, the French
+                physicist <a href="https://en.wikipedia.org/wiki/L%C3%A9on_Foucault" target="_blank">Léon
+                    Foucault</a>, is a very long spherical pendulum
+                with a large mass at the bottom. In an experiment with such
+                a pendulum in 1851, Foucault was able to prove for the first
+                time in a simple way that the earth rotates. Before that,
+                one always had to rely on long observations of the night sky
+                and calculations. With this experiment, it has been possible
+                to make the earth's rotation accessible in a relatively
+                simple way, even to people with little or no knowledge of
+                physics.
+            </p>
+
+
+
+            <p>The following equations are provided by Parmeet Singh Chani who
+                made his slides available <a
+                    href="https://docs.google.com/presentation/d/1zGPZZ6i7xeJ5kZhfs0uXpLLQkGKN2nGrfFmFf72jizM/edit#slide=id.g126641e67d9_0_28"
+                    target="_blank">here</a></a>. <br>
+                The basis of the foucaults pendulum is the equation of motion:
+            </p>
+            <p style="text-align: center;">
+                \(\ddot{x}-2\dot{y}sin(\lambda+\frac{gx}{l})=0\)<br>
+                \(\ddot{y}-2\dot{x}sin(\lambda+\frac{gy}{l})=0\) <br>
+            </p>
+            <p>which leads to the analytic solution:</p>
+            <p style="text-align: center">
+                \(p = x + iy = \biggl(C_{1}e^{i\sqrt{\frac{g}{l}}t}+C_{2}e^{-i\sqrt{\frac{g}{l}}t}\biggr)e^{-i\Omega
+                sin(\lambda)}\)
+                <br>
+                <br>
+            </p>
+            <p>
+                where:
+                <br><br>
+            <table style="
+                margin-left: auto;
+                margin-right: auto;
+              ">
+                <tr>
+                    <td>\(g=\)</td>
+                    <td style="text-align: left;">gravity</td>
+                </tr>
+                <tr>
+                    <td>\(l=\)</td>
+                    <td style="text-align: left;">length of pendulum string</td>
+                </tr>
+                <tr>
+                    <td>\(\Omega=\)</td>
+                    <td style="text-align: left;">angular speed of earth</td>
+                </tr>
+                <tr>
+                    <td>\(\lambda=\)</td>
+                    <td style="text-align: left;">latitude</td>
+                </tr>
+            </table>
+            </p>
+
+        </div>
+
+        <!-- MAIN v1 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
+
+        <div id="main_v1-wrapper">
+            <div class="wrapper">
+                <div class="content-left">
+                    <div class="fp-plot-content-wrapper">
+                        <div id="fp_line_plot_container" class="fp-line-plot-container">
+                            <canvas id="fp_line_plot" width=500 height=500 class="canvas"></canvas>
+                        </div>
+                        <div id="fp_input_section" class="fp-input-section">
+                            <div class="fp-input-wrapper input-wrapper">
+                                <div>Gravity</div>
+                                <div id="fp_g_value" name="fp_slide_value" class="fp-slide-value slide-value">9.81</div>
+                                <input id="fp_g_slide" type="range" class="fp-slide slide" name="fp_slide" min="0"
+                                    max="20" step="0.1" value="9.8">
                             </div>
-                            <div id="fp_input_section"
-                                class="fp-input-section">
-                                <div class="fp-input-wrapper input-wrapper">
-                                    <div>Gravity</div>
-                                    <div id="fp_g_value"
-                                        name="fp_slide_value"
-                                        class="fp-slide-value slide-value">9.81</div>
-                                    <input id="fp_g_slide" type="range"
-                                        class="fp-slide slide"
-                                        name="fp_slide"
-                                        min="0" max="20"
-                                        step="0.1" value="9.8">
-                                </div>
 
-                                <div class="fp-input-wrapper input-wrapper">
-                                    <div>Angular speed of earth</div>
-                                    <div id="fp_R_value"
-                                        name="fp_slide_value"
-                                        class="fp-slide-value slide-value">0.1</div>
-                                    <input id="fp_R_slide" type="range"
-                                        class="fp-slide slide"
-                                        name="fp_slide"
-                                        min="0" max="10"
-                                        step="0.1" value="0.1">
-                                </div>
+                            <div class="fp-input-wrapper input-wrapper">
+                                <div>Angular speed of earth</div>
+                                <div id="fp_R_value" name="fp_slide_value" class="fp-slide-value slide-value">0.1</div>
+                                <input id="fp_R_slide" type="range" class="fp-slide slide" name="fp_slide" min="0"
+                                    max="10" step="0.1" value="0.1">
+                            </div>
 
-                                <div class="X-input-wrapper">
-                                    \(lat\):
-                                    <input id="fp_X_input_lambda" type="text"
-                                        name="fp_input_field"
-                                        class="fp_X_input_field" value=3 />
-                                </div>
+                            <div class="X-input-wrapper">
+                                \(\lambda\):
+                                <input id="fp_X_input_lambda" type="text" name="fp_input_field" class="fp_X_input_field"
+                                    value=3 />
+                            </div>
 
-                                <div class="X-input-wrapper">
-                                    \(L\):
-                                    <input id="fp_X_input_L" type="text"
-                                        name="fp_input_field"
-                                        class="fp_X_input_field" value=6.7 />
-                                </div>
+                            <div class="X-input-wrapper">
+                                \(l\):
+                                <input id="fp_X_input_L" type="text" name="fp_input_field" class="fp_X_input_field"
+                                    value=6.7 />
+                            </div>
 
-                                <!-- <div class="X-input-wrapper">
+                            <!-- <div class="X-input-wrapper">
                                     \(k_2\):
                                     <input id="fp_X_input_k_2" type="text"
                                         name="fp_input_field"
                                         class="fp_X_input_field" value=1 />
                                 </div> -->
-                                <button class="someBtn" id="fp_animate">Animate</button>
-                                <button class="someBtn" id="fp_resetBtn">Reset</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- INFORMATION -->
-                    <div class="content-right">
-                        <div class="description">
-                            <h2>Proof that the earth is rotating</h2>
-                            <h4>How is this experiment performed?</h4>
-                            <p>
-                                The pendulum is set up at a fixed point and
-                                brought into an initial position, where the
-                                release of a band with the help of fire sets the
-                                pendulum in swinging motion. This is to prevent
-                                unwanted movement and additional swing and spin.
-                            </p>
-                            <h4>What can be observed?</h4>
-                            <p>
-                                At the poles of our earth, after about 23.93
-                                hours, it would look as if the pendulum had
-                                turned 360°, but in fact it is the earth
-                                that turns under the pendulum and this turn is
-                                not transmitted to the swinging object. At the
-                                equator this is different,
-                                because there the path of the pendulum does not
-                                seem to
-                                change. This is due to the fact that a day on
-                                earth, with its almost 24 hours, divided by the
-                                sine of the latitude at the equator is 0 (
-                                \(0=\frac{23,93}{sin(0)}\)).
-                            </p>
-                            <p>
-                                &emsp; ☞ <a
-                                    target="_blank"
-                                    href="FoucaultsPendulum.txt">View</a> R
-                                implementation
-                            </p>
-                            <p>
-                                &emsp; ☞ <a href="FoucaultsPendulum.html"
-                                    target="_blank">View</a> or <a
-                                    href="FoucaultsPendulum.ipynb"
-                                    target="_blank" download>download</a>
-                                Jupyter
-                                Notebook
-                            </p>
-                            <p>
-                                &emsp; ☞ Other visualization: <a href="https://javalab.org/en/foucault_pendulum_en/" target="_blank">javalab.org</a>
-                            </p>
+                            <button class="someBtn" id="fp_animate">Animate</button>
+                            <button class="someBtn" id="fp_resetBtn">Reset</button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="placeholder" style="width:100%; height: 70px;"></div> 
-            
-            <!-- MAIN v2 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
-            <!-- <div id="main_v2-wrapper">
+                <!-- INFORMATION -->
+                <div class="content-right">
+                    <div class="description">
+                        <h2>Proof that the earth is rotating</h2>
+                        <h4>How is this experiment performed?</h4>
+                        <p>
+                            The pendulum is set up at a fixed point and
+                            brought into an initial position, where the
+                            release of a band with the help of fire sets the
+                            pendulum in swinging motion. This is to prevent
+                            unwanted movement and additional swing and spin.
+                        </p>
+                        <h4>What can be observed?</h4>
+                        <p>
+                            At the poles of our earth, after about 23.93
+                            hours, it would look as if the pendulum had
+                            turned 360°, but in fact it is the earth
+                            that turns under the pendulum and this turn is
+                            not transmitted to the swinging object. At the
+                            equator this is different,
+                            because there the path of the pendulum does not
+                            seem to
+                            change. This is due to the fact that a day on
+                            earth, with its almost 24 hours, divided by the
+                            sine of the latitude at the equator is 0
+                            \(\bigl(0=\frac{23,93}{sin(0)}\bigr)\).
+                        </p>
+                        <p>
+                            &emsp; ☞ <a target="_blank" href="FoucaultsPendulum.txt">View</a> R
+                            implementation
+                        </p>
+                        <p>
+                            &emsp; ☞ <a href="FoucaultsPendulum.html" target="_blank">View</a> or <a
+                                href="FoucaultsPendulum.ipynb" target="_blank" download>download</a>
+                            Jupyter
+                            Notebook
+                        </p>
+                        <p>
+                            &emsp; ☞ Other visualization: <a href="https://javalab.org/en/foucault_pendulum_en/"
+                                target="_blank">javalab.org</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="placeholder" style="width:100%; height: 70px;"></div>
+
+        <!-- MAIN v2 ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- ----- ---- -->
+        <!-- <div id="main_v2-wrapper">
                 <div class="wrapper">
                     PLOT 
                     <div class="content-left">
@@ -265,8 +281,8 @@
                 </div>
             </div> -->
 
-            <div class="placeholder" style="height:62px; width:100%;"></div>
-            <!--<div id="imgs-container">
+        <div class="placeholder" style="height:62px; width:100%;"></div>
+        <!--<div id="imgs-container">
                 <div class="img-container">
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/2/22/FoucaultGlobusAnima.gif">
@@ -278,13 +294,32 @@
                     </p>
                 </div>
             </div> -->
-            <!-- FOOTER -->
-            <div id="footer" style="text-align:center; margin:0 auto;
+
+
+        <h4 style="text-align: left;">References</h4>
+        <p style="padding: 0px 15px 0px 15px ;">
+            &emsp; ☞ <a target="_blank" href="https://www.kip.uni-heidelberg.de/image/f/oeffwiss/pendel/Foucault.pdf">
+                "The Foucault Pendulum"
+            </a> - a Simplified Trajectory
+            Analysis for a Pendulum on a Turntable and an
+            Outlook to a Pendulum on Earth, A. Reiser and J. Stiewe
+            (2018)
+        </p>
+        <p style="padding: 0px 15px 0px 15px ;">
+            &emsp; ☞ <a target="_blank"
+                href="https://github.com/singhmeet11/Foucalt-s-pendulum-a-simple-proof-that-earth-rotates">
+                "Foucalts pendulum a simple proof that earth rotates"
+            </a> - GitHub repository by
+            Parmeet Singh Chani (singhmeet11) (2022)
+        </p>
+
+        <!-- FOOTER -->
+        <div id="footer" style="text-align:center; margin:0 auto;
                 padding-top: 5rem; width:
-                50%; font-size: 16px;">Site developed by <a
-                    href="https://www.b-schwertfeger.de">Benjamin
-                    T. Schwertfeger</a> © 2021
-            </div>
-            <div class="placeholder" style="width:100%;height:100px;"></div>
-        </body>
-    </html>
+                50%; font-size: 16px;">Site developed by <a href="https://www.b-schwertfeger.de">Benjamin
+                T. Schwertfeger</a> 2022
+        </div>
+        <div class="placeholder" style="width:100%;height:100px;"></div>
+</body>
+
+</html>

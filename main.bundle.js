@@ -7,7 +7,10 @@
  * @author Benjamin Thomas Schwertfeger (January 2022)
  * @email development@b-schwertfeger.de
  * @link https://github.com/btschwertfeger-AWI-Workspace/FoucaultsPendulumWebsite
+ * 
+ * Note: sudo watchify main.js -o main.bundle.js to bundle it
  **/
+
 
 
 function arange(start, end, step) {
@@ -63,7 +66,8 @@ const {
     complex,
     sqrt,
     multiply,
-    add
+    add,
+    sin
 } = require("mathjs");
 
 window.defaultInput = {
@@ -325,6 +329,7 @@ window.onload = createFPPlot()
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- */
 /* ----- ----- ----- ----- ----- V E R S I O N - 2 ----- ----- ----- ----- ----- */
+// not working correct ...
 
 window.defaultInputv2 = {
     // user defined variabels
