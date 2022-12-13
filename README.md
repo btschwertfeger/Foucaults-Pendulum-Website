@@ -20,7 +20,7 @@ the equator is 0. $$0=\frac{23.99}{sin(0)}$$
 - <a target="_blank" href="https://www.kip.uni-heidelberg.de/image/f/oeffwiss/pendel/Foucault.pdf"> The Foucault Pendulum </a> - a Simplified Trajectory Analysis for a Pendulum on a Turntable and an Outlook to a Pendulum on Earth, A. Reiser annd J. Stiewe (2018)
 - <a target="blank" href="https://github.com/singhmeet11/Foucalt-s-pendulum-a-simple-proof-that-earth-rotates">Foucalts pendulum a simple proof that earth rotates</a> GitHub repository by Parmeet Singh Chani (singhmeet11) (2022)
 
-## License
+## Availability
 
 This website and the attached notebook are available as learning materials for lectures and similar events.
 This can be found [here](https://b-schwertfeger.de/projects/awi-work/FoucaultsPendulum/).
