@@ -11,7 +11,7 @@
     "url": "git+https://github.com/btschwertfeger-AWI-Workspace/FoucaultsPendulumWebsite.git"
   },
   "author": "Benjamin Thomas Schwertfeger",
-  "license": "ISC",
+  "license": "GNU General Public License v3.0",
   "bugs": {
     "url": "https://github.com/btschwertfeger-AWI-Workspace/FoucaultsPendulumWebsite/issues"
   },
