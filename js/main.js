@@ -5,7 +5,7 @@
  * @email development@b-schwertfeger.de
  * @link https://github.com/btschwertfeger-AWI-Workspace/FoucaultsPendulumWebsite
  *
- * Note: sudo watchify main.js -o main.bundle.js to bundle it
+ * Note: sudo watchify main.js -o main_bundle.js to bundle it
  **/
 
 function arange(start, end, step) {
