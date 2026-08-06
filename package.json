@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/btschwertfeger-AWI-Workspace/FoucaultsPendulumWebsite#readme",
   "dependencies": {
-    "mathjs": "^10.0.2"
+    "mathjs": "^15.2.0"
   }
 }
